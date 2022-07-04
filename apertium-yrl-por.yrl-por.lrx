@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules glob="star">
+  <!--
+    This rule chooses "língua" as the translation of "nheenga" when it is
+    preceded by "purungitá."
+  -->
+  <rule weight="1.2">
+    <match lemma="purungitá"/>
+    <repeat from="0" upto="100"><match/></repeat>
+    <match lemma="nheenga" tags="n.*">
+      <select lemma="língua" tags="n.*"/>
+    </match>
+  </rule>
+
+  <rule>
+    <match lemma="nheenga" tags="n.*">
+      <select lemma="palavra" tags="n.*"/>
+    </match>
+  </rule>
+
+  <!--
+    This rule chooses "lembrar-se" as the translation of "manduári" when it is
+    followed by the postposition "resé" or "sesé".
+  -->
+  <rule weight="1.2">
+    <match lemma="manduári" tags="v.*">
+      <select lemma="lembrar-se" tags="v.*"/>
+    </match>
+    <repeat from="0" upto="100"><match/></repeat>
+    <or>
+    <match lemma="sesé" tags="post.*"/>
+    <match lemma="resé" tags="post.*"/>
+    </or>
+  </rule>
+
+  <rule>
+    <match lemma="manduári" tags="v.*">
+      <select lemma="pensar" tags="v.*"/>
+    </match>
+  </rule>
+
+</rules>
+
+<!--
+Resources:
+    https://wiki.apertium.org/wiki/How_to_get_started_with_lexical_selection_rules
+    https://wiki.apertium.org/wiki/Constraint-based_lexical_selection
+    https://wiki.apertium.org/wiki/Lexical_selection
+    https://wiki.apertium.org/wiki/Learning_rules_from_parallel_and_non-parallel_corpora
+-->
